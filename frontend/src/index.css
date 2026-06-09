@@ -1,0 +1,140 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --dorado: #C4982A;
+  --dorado-oscuro: #9A7520;
+  --dorado-bg: #FAF6ED;
+  --dorado-borde: #E8E0D0;
+  --carbon: #1A1A1A;
+  --gris-100: #F5F5F5;
+  --gris-200: #E8E0D0;
+  --gris-400: #9A9289;
+  --gris-600: #5C5650;
+  --gris-900: #1A1A1A;
+  --blanco: #FFFFFF;
+  --rojo: #8B2E2E;
+  --rojo-bg: #FAF0F0;
+  --verde: #2E6B4F;
+  --verde-bg: #EDF5F0;
+  --amarillo: #C4982A;
+  --radio: 5px;
+  --sombra: 0 1px 6px rgba(196,152,42,0.08);
+  --sombra-md: 0 4px 20px rgba(196,152,42,0.12);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 300;
+}
+
+body {
+  background: linear-gradient(160deg, #F8F5F0 0%, #FFFFFF 100%);
+  background-attachment: fixed;
+  color: var(--carbon);
+  min-height: 100vh;
+}
+
+a { color: var(--dorado); text-decoration: none; }
+a:hover { color: var(--dorado-oscuro); text-decoration: none; }
+
+h1, h2, h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+
+input, select, textarea {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px; /* prevents iOS auto-zoom on focus */
+  font-weight: 300;
+  border: 1px solid var(--dorado-borde);
+  border-radius: var(--radio);
+  padding: 9px 13px;
+  width: 100%;
+  background: var(--blanco);
+  color: var(--carbon);
+  transition: border-color .2s;
+  min-height: 44px; /* tap target */
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--dorado);
+}
+textarea { resize: vertical; min-height: 80px; }
+
+button {
+  font-family: 'Inter', system-ui, sans-serif;
+  cursor: pointer;
+  border-radius: var(--radio);
+  padding: 9px 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  min-height: 44px; /* tap target */
+  transition: background .2s, color .2s, border-color .2s;
+}
+button:active { transform: scale(0.99); }
+
+.btn-primario {
+  background: var(--dorado);
+  color: white;
+  border: 1px solid var(--dorado);
+}
+.btn-primario:hover { background: var(--dorado-oscuro); border-color: var(--dorado-oscuro); }
+
+.btn-secundario {
+  background: transparent;
+  color: var(--dorado);
+  border: 1px solid var(--dorado);
+}
+.btn-secundario:hover { background: var(--dorado-bg); }
+
+.btn-peligro { background: var(--rojo); color: white; border: 1px solid var(--rojo); }
+.btn-peligro:hover { background: #6e2323; border-color: #6e2323; }
+.btn-exito { background: var(--verde); color: white; border: 1px solid var(--verde); }
+.btn-exito:hover { background: #245940; border-color: #245940; }
+
+.badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 3px;
+}
+.badge-azul { background: var(--dorado-bg); color: var(--dorado-oscuro); border: 1px solid #E8D8A0; }
+.badge-verde { background: var(--verde-bg); color: var(--verde); border: 1px solid #C0DDD0; }
+.badge-rojo { background: var(--rojo-bg); color: var(--rojo); border: 1px solid #DDBFBF; }
+.badge-amarillo { background: var(--dorado-bg); color: var(--dorado-oscuro); border: 1px solid #E8D8A0; }
+.badge-gris { background: var(--gris-100); color: var(--gris-600); border: 1px solid var(--gris-200); }
+
+.tarjeta {
+  background: var(--blanco);
+  border-radius: var(--radio);
+  border: 1px solid var(--dorado-borde);
+  box-shadow: var(--sombra);
+  padding: 24px;
+}
+
+.campo-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.campo-grupo label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--gris-400);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+@media (max-width: 768px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  /* Disable gridColumn span overrides on mobile */
+  [style*="grid-column"] { grid-column: unset !important; }
+}
+
+.cargando { text-align: center; padding: 48px; color: var(--gris-400); font-size: 1rem; letter-spacing: 0.04em; }
+.error-msg { color: var(--rojo); background: var(--rojo-bg); border: 1px solid #DDBFBF; border-radius: var(--radio); padding: 12px 16px; font-size: 0.88rem; }

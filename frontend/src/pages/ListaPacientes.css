@@ -1,0 +1,101 @@
+.lista-encabezado {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.lista-encabezado h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--carbon);
+}
+.subtitulo { color: var(--gris-400); font-size: 0.82rem; margin-top: 4px; letter-spacing: 0.03em; }
+
+.barra-busqueda { margin-bottom: 16px; padding: 16px 20px; }
+.barra-busqueda input { max-width: 400px; }
+
+/* ── Desktop table ─────────────────────────────────────── */
+.tabla-contenedor { padding: 0; overflow-x: auto; }
+.tabla-pacientes { width: 100%; border-collapse: collapse; font-size: 0.87rem; }
+.tabla-pacientes th {
+  text-align: left;
+  padding: 11px 16px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gris-400);
+  border-bottom: 1px solid var(--dorado-borde);
+  background: var(--dorado-bg);
+  white-space: nowrap;
+}
+.tabla-pacientes td {
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--dorado-borde);
+  vertical-align: middle;
+  font-weight: 300;
+}
+.tabla-pacientes tr:last-child td { border-bottom: none; }
+.tabla-pacientes tr:hover td { background: #FDFAF4; }
+
+.nombre-link { font-weight: 500; color: var(--carbon); }
+.nombre-link:hover { color: var(--dorado); }
+
+/* ── Mobile cards ──────────────────────────────────────── */
+.lista-cards { display: none; flex-direction: column; gap: 10px; }
+
+.paciente-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  text-decoration: none;
+  color: inherit;
+  transition: background .15s;
+}
+.paciente-card:hover { background: #FDFAF4; text-decoration: none; color: inherit; }
+
+.paciente-card-info { flex: 1; min-width: 0; }
+.paciente-card-nombre { font-weight: 500; font-size: 0.95rem; color: var(--carbon); margin-bottom: 3px; }
+.paciente-card-meta { font-size: 0.8rem; color: var(--gris-400); font-weight: 300; }
+.paciente-card-derecha { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; }
+
+/* ── Buttons ─────────────────────────────────────────── */
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 8px 18px; border-radius: var(--radio); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; cursor: pointer; transition: background .18s, color .18s, border-color .18s; text-decoration: none; min-height: 44px; }
+.btn-primario { background: var(--dorado); color: white; border: 1px solid var(--dorado); }
+.btn-primario:hover { background: var(--dorado-oscuro); border-color: var(--dorado-oscuro); text-decoration: none; }
+.btn-secundario { background: transparent; color: var(--dorado); border: 1px solid var(--dorado); }
+.btn-secundario:hover { background: var(--dorado-bg); text-decoration: none; }
+.btn-sm { padding: 4px 11px; font-size: 0.76rem; min-height: 36px; }
+
+.vacio { text-align: center; padding: 56px; color: var(--gris-400); }
+.vacio p { margin-bottom: 16px; font-size: 0.9rem; letter-spacing: 0.03em; }
+
+/* ── Mobile (≤ 640px) ─────────────────────────────────── */
+@media (max-width: 640px) {
+  .lista-encabezado {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .lista-encabezado .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .barra-busqueda { padding: 12px; }
+  .barra-busqueda input { max-width: 100%; }
+
+  /* Hide table, show cards */
+  .tabla-contenedor { display: none; }
+  .lista-cards { display: flex; }
+
+  .vacio { padding: 32px 16px; }
+}

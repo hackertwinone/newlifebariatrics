@@ -1,0 +1,67 @@
+.login-fondo {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #F8F5F0 0%, #FFFFFF 100%);
+  padding: 20px;
+}
+
+.login-tarjeta {
+  width: 100%;
+  max-width: 400px;
+  padding: 48px 44px;
+  border: 1px solid var(--dorado-borde);
+  box-shadow: 0 4px 32px rgba(196,152,42,0.10);
+}
+
+.login-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.login-nombre {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 500;
+  font-size: 2rem;
+  letter-spacing: 0.22em;
+  color: var(--dorado);
+  text-transform: uppercase;
+}
+
+.login-subtitulo-marca {
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  color: var(--gris-400);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 13px;
+  font-size: 0.88rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+@media (max-width: 480px) {
+  .login-tarjeta {
+    padding: 36px 24px;
+    border-radius: var(--radio);
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+}

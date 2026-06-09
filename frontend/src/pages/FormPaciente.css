@@ -1,0 +1,50 @@
+.form-paciente { display: flex; flex-direction: column; gap: 22px; }
+.form-nav { font-size: 0.82rem; }
+.volver { color: var(--gris-400); letter-spacing: 0.04em; }
+.volver:hover { color: var(--dorado); text-decoration: none; }
+.form-paciente h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.4rem, 4vw, 1.9rem); font-weight: 400; letter-spacing: 0.06em;
+}
+
+.form-seccion { padding: 24px; }
+.seccion-titulo {
+  font-size: 0.68rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--dorado); margin-bottom: 18px;
+}
+
+.campo-error { font-size: 0.75rem; color: var(--rojo); margin-top: 3px; }
+
+.check-activo { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 0.88rem; cursor: pointer; font-weight: 300; min-height: 44px; }
+.check-activo input { width: auto; min-height: unset; }
+
+.form-acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 4px 0;
+}
+
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 9px 22px; border-radius: var(--radio); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; cursor: pointer; text-decoration: none; transition: background .18s, color .18s, border-color .18s; border: none; min-height: 44px; }
+.btn-primario { background: var(--dorado); color: white; border: 1px solid var(--dorado); }
+.btn-primario:hover:not(:disabled) { background: var(--dorado-oscuro); border-color: var(--dorado-oscuro); text-decoration: none; }
+.btn-primario:disabled { opacity: 0.55; cursor: default; }
+.btn-secundario { background: transparent; color: var(--dorado); border: 1px solid var(--dorado); }
+.btn-secundario:hover { background: var(--dorado-bg); text-decoration: none; }
+
+/* ── Mobile (≤ 640px) ─────────────────────────────────── */
+@media (max-width: 640px) {
+  .form-seccion { padding: 16px; }
+
+  /* Guardar on top, Cancelar below — use column-reverse */
+  .form-acciones {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+
+  .form-acciones .btn {
+    width: 100%;
+    text-align: center;
+  }
+}

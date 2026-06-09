@@ -1,0 +1,100 @@
+.tab-contenido { display: flex; flex-direction: column; gap: 16px; }
+.tab-encabezado { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+.tab-encabezado h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.15rem; font-weight: 400; letter-spacing: 0.06em;
+}
+
+.sin-registros { padding: 40px; text-align: center; color: var(--gris-400); font-size: 0.88rem; letter-spacing: 0.04em; }
+.tarjetas-lista { display: flex; flex-direction: column; gap: 12px; }
+
+.registro-tarjeta { padding: 18px 22px; }
+.registro-encabezado { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; flex-wrap: wrap; gap: 8px; }
+.registro-encabezado > div:first-child { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.registro-encabezado strong { font-size: 0.95rem; font-weight: 500; }
+.registro-acciones { display: flex; gap: 8px; }
+
+.registro-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+.campo-display dt { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gris-400); margin-bottom: 3px; }
+.campo-display dd { font-size: 0.88rem; color: var(--carbon); font-weight: 400; }
+
+/* ── Buttons ─────────────────────────────────────────── */
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 8px 18px; border-radius: var(--radio); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; cursor: pointer; text-decoration: none; transition: background .18s, color .18s, border-color .18s; border: none; min-height: 44px; }
+.btn-primario { background: var(--dorado); color: white; border: 1px solid var(--dorado); }
+.btn-primario:hover:not(:disabled) { background: var(--dorado-oscuro); border-color: var(--dorado-oscuro); }
+.btn-primario:disabled { opacity: 0.55; cursor: default; }
+.btn-secundario { background: transparent; color: var(--dorado); border: 1px solid var(--dorado); }
+.btn-secundario:hover { background: var(--dorado-bg); }
+.btn-peligro { background: var(--rojo); color: white; border: 1px solid var(--rojo); }
+.btn-peligro:hover { background: #6e2323; border-color: #6e2323; }
+.btn-sm { padding: 4px 11px; font-size: 0.76rem; min-height: 36px; }
+
+/* ── Modal ───────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(26,26,26,0.5);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000; padding: 20px;
+}
+
+.modal {
+  background: var(--blanco);
+  border-radius: var(--radio);
+  border: 1px solid var(--dorado-borde);
+  box-shadow: 0 8px 40px rgba(196,152,42,0.15);
+  width: 100%; max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 28px;
+}
+.modal-grande { max-width: 720px; }
+.modal-titulo { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; }
+.modal-titulo h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.2rem; font-weight: 400; letter-spacing: 0.06em;
+}
+.modal-cerrar {
+  background: none; border: none;
+  font-size: 1.1rem; cursor: pointer;
+  color: var(--gris-400); padding: 4px 8px;
+  border-radius: 3px;
+  min-width: 44px; min-height: 44px;
+  display: flex; align-items: center; justify-content: center;
+}
+.modal-cerrar:hover { background: var(--dorado-bg); color: var(--dorado); }
+.modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
+.modal-acciones { display: flex; justify-content: flex-end; gap: 10px; }
+.check-activo { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; cursor: pointer; font-weight: 300; min-height: 44px; }
+.check-activo input { width: auto; min-height: unset; }
+
+/* ── Mobile (≤ 640px) ─────────────────────────────────── */
+@media (max-width: 640px) {
+  .registro-grid { grid-template-columns: 1fr 1fr; }
+
+  .registro-acciones { flex-wrap: wrap; gap: 6px; }
+
+  /* Full-screen modal on mobile */
+  .modal-overlay { padding: 0; align-items: flex-end; }
+
+  .modal, .modal-grande {
+    max-width: 100%;
+    width: 100%;
+    max-height: 92vh;
+    border-radius: var(--radio) var(--radio) 0 0;
+    padding: 20px 16px 32px;
+  }
+
+  .modal-grid { grid-template-columns: 1fr; }
+
+  .modal-acciones { flex-direction: column-reverse; gap: 10px; }
+  .modal-acciones .btn { width: 100%; text-align: center; }
+
+  .tab-encabezado .btn { width: 100%; }
+}
+
+/* ── Tablet (641–768px) ──────────────────────────────── */
+@media (min-width: 641px) and (max-width: 768px) {
+  .registro-grid { grid-template-columns: 1fr 1fr; }
+}
