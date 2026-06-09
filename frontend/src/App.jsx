@@ -40,7 +40,7 @@ function Layout() {
       <header className="barra-nav">
         <div className="nav-marca">
           <img
-            src="/public/aurum_logo.png"
+            src="/aurum_logo.png"
             alt="AURUM"
             height="36"
             style={{ display: "block" }}

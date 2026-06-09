@@ -30,7 +30,7 @@ export default function Login() {
     <div className="login-fondo">
       <div className="login-tarjeta tarjeta">
         <div className="login-logo">
-          <img src="/src/static/aurum_logo.png" alt="AURUM" height="48" style={{ display: 'block' }} />
+          <img src="/aurum_logo.png" alt="AURUM" height="48" style={{ display: 'block' }} />
           <div>
             <div className="login-nombre">AURUM</div>
           </div>
