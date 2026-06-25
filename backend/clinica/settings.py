@@ -82,6 +82,16 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# CSRF
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'http://127.0.0.1:5173',
+]
+_backend_url = os.environ.get('BACKEND_URL', '')
+if _backend_url:
+    CSRF_TRUSTED_ORIGINS.append(_backend_url)
+
 # CORS
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
