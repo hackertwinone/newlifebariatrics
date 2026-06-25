@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Paciente, SeguroMedico, Hospitalizacion, Receta
+from .models import Paciente, SeguroMedico, Hospitalizacion, Receta, HistoriaClinica, Consulta
 
 
 class SeguroMedicoSerializer(serializers.ModelSerializer):
@@ -24,6 +24,35 @@ class RecetaSerializer(serializers.ModelSerializer):
         model = Receta
         fields = '__all__'
         read_only_fields = ('fecha_registro',)
+
+
+class HistoriaClinicaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HistoriaClinica
+        fields = '__all__'
+        read_only_fields = ('paciente', 'fecha_registro', 'fecha_actualizacion')
+
+    def _calc_imc(self, peso, talla):
+        try:
+            talla_m = float(talla) / 100
+            return round(float(peso) / (talla_m ** 2), 2)
+        except (TypeError, ZeroDivisionError):
+            return None
+
+    def validate(self, data):
+        # Auto-calculate IMC from peso/talla when not explicitly set
+        peso = data.get('peso') or (self.instance.peso if self.instance else None)
+        talla = data.get('talla') or (self.instance.talla if self.instance else None)
+        if 'imc' not in data and peso and talla:
+            data['imc'] = self._calc_imc(peso, talla)
+        return data
+
+
+class ConsultaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Consulta
+        fields = '__all__'
+        read_only_fields = ('created_at', 'updated_at')
 
 
 class PacienteListSerializer(serializers.ModelSerializer):

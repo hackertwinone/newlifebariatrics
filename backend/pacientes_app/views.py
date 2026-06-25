@@ -7,10 +7,11 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 from django_filters.rest_framework import DjangoFilterBackend
-from .models import Paciente, SeguroMedico, Hospitalizacion, Receta
+from .models import Paciente, SeguroMedico, Hospitalizacion, Receta, HistoriaClinica, Consulta
 from .serializers import (
     PacienteListSerializer, PacienteDetailSerializer,
-    SeguroMedicoSerializer, HospitalizacionSerializer, RecetaSerializer
+    SeguroMedicoSerializer, HospitalizacionSerializer, RecetaSerializer,
+    HistoriaClinicaSerializer, ConsultaSerializer,
 )
 from .receta_pdf import generar_receta
 
@@ -42,6 +43,18 @@ class PacienteViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
+    @action(detail=True, methods=['get', 'put'])
+    def historia(self, request, pk=None):
+        paciente = self.get_object()
+        historia, _ = HistoriaClinica.objects.get_or_create(paciente=paciente)
+        if request.method == 'PUT':
+            serializer = HistoriaClinicaSerializer(historia, data=request.data, partial=True)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response(serializer.data)
+        return Response(HistoriaClinicaSerializer(historia).data)
+
+
 class SeguroMedicoViewSet(viewsets.ModelViewSet):
     queryset = SeguroMedico.objects.all()
     serializer_class = SeguroMedicoSerializer
@@ -55,6 +68,14 @@ class HospitalizacionViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
     filterset_fields = ['paciente', 'estado', 'motivo']
     ordering = ['-fecha_ingreso']
+
+
+class ConsultaViewSet(viewsets.ModelViewSet):
+    queryset = Consulta.objects.all()
+    serializer_class = ConsultaSerializer
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    filterset_fields = ['paciente']
+    ordering = ['-fecha']
 
 
 class RecetaViewSet(viewsets.ModelViewSet):
@@ -79,9 +100,6 @@ class RecetaViewSet(viewsets.ModelViewSet):
             nombre_completo=paciente.nombre_completo,
             edad=edad,
             fecha=fecha_str,
-            diagnostico=receta.diagnostico,
-            peso=receta.peso,
-            talla=receta.talla,
             indicaciones=receta.indicaciones,
         )
 

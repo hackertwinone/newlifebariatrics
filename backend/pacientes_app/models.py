@@ -104,6 +104,136 @@ class Receta(models.Model):
         return f'Receta {self.fecha} – {self.paciente}'
 
 
+TABAQUISMO_CHOICES = [
+    ('nunca', 'Nunca'), ('ocasional', 'Ocasional'),
+    ('frecuente', 'Frecuente'), ('exfumador', 'Exfumador'),
+]
+ALCOHOL_CHOICES = [
+    ('nunca', 'Nunca'), ('social', 'Social'), ('frecuente', 'Frecuente'),
+]
+ACTIVIDAD_CHOICES = [
+    ('sedentario', 'Sedentario'), ('ligera', 'Ligera'),
+    ('moderada', 'Moderada'), ('intensa', 'Intensa'),
+]
+SUENO_CHOICES = [
+    ('buena', 'Buena'), ('interrumpida', 'Interrumpida'), ('mala', 'Mala'),
+]
+BEBIDAS_CHOICES = [
+    ('nunca', 'Nunca'), ('ocasional', 'Ocasional'), ('frecuente', 'Frecuente'),
+]
+EMOCIONAL_CHOICES = [
+    ('estable', 'Estable'), ('ansioso', 'Ansioso'),
+    ('deprimido', 'Deprimido'), ('otro', 'Otro'),
+]
+
+
+class HistoriaClinica(models.Model):
+    paciente = models.OneToOneField(
+        Paciente, on_delete=models.CASCADE, related_name='historia_clinica'
+    )
+
+    # Encabezado
+    fecha_realizada = models.DateTimeField(null=True, blank=True)
+    doctor_que_realizo = models.CharField(max_length=200, blank=True)
+
+    # Motivo de consulta
+    motivo_consulta = models.TextField(blank=True)
+
+    # Historia del peso
+    peso_actual = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    peso_maximo_historico = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    peso_mas_bajo_adulto = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    peso_adolescencia = models.CharField(max_length=200, blank=True)
+    edad_inicio_aumento_peso = models.CharField(max_length=200, blank=True)
+    eventos_asociados_aumento_peso = models.JSONField(default=list, blank=True)
+    intentos_previos_perder_peso = models.CharField(max_length=200, blank=True)
+    especifique_intentos = models.CharField(max_length=500, blank=True)
+    medicamentos_usados = models.CharField(max_length=500, blank=True)
+    resultados_obtenidos = models.TextField(blank=True)
+
+    # Composición corporal
+    peso = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True, verbose_name='Peso medido (kg)')
+    talla = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True, verbose_name='Talla (cm)')
+    imc = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True, verbose_name='IMC')
+    porcentaje_grasa_corporal = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    porcentaje_grasa_visceral = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    masa_muscular = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+
+    # Antecedentes
+    cirugias_previas = models.TextField(blank=True)
+    hospitalizaciones_previas = models.TextField(blank=True)
+
+    # Estilo de vida
+    tabaquismo = models.CharField(max_length=20, choices=TABAQUISMO_CHOICES, blank=True)
+    alcohol = models.CharField(max_length=20, choices=ALCOHOL_CHOICES, blank=True)
+    actividad_fisica = models.CharField(max_length=20, choices=ACTIVIDAD_CHOICES, blank=True)
+    horas_sueno = models.CharField(max_length=100, blank=True)
+    calidad_sueno = models.CharField(max_length=20, choices=SUENO_CHOICES, blank=True)
+
+    # Patrón de alimentación
+    numero_comidas_dia = models.PositiveSmallIntegerField(null=True, blank=True)
+    desayuno_habitual = models.CharField(max_length=500, blank=True)
+    comida_habitual = models.CharField(max_length=500, blank=True)
+    cena_habitual = models.CharField(max_length=500, blank=True)
+    snacks = models.CharField(max_length=500, blank=True)
+    consumo_bebidas_azucaradas = models.CharField(max_length=20, choices=BEBIDAS_CHOICES, blank=True)
+    consumo_comida_rapida = models.CharField(max_length=200, blank=True)
+
+    # Evaluación conductual / emocional
+    come_grandes_volumenes = models.BooleanField(default=False)
+    come_rapido = models.BooleanField(default=False)
+    come_por_ansiedad = models.BooleanField(default=False)
+    come_sin_hambre = models.BooleanField(default=False)
+    episodios_atracon = models.BooleanField(default=False)
+    come_durante_noche = models.BooleanField(default=False)
+    preferencia_alimento = models.CharField(max_length=200, blank=True)
+    especifique_preferencia = models.CharField(max_length=500, blank=True)
+    estado_emocional_actual = models.CharField(max_length=20, choices=EMOCIONAL_CHOICES, blank=True)
+    tratamiento_psicologico_previo = models.BooleanField(default=False)
+    trastornos_conducta_alimentaria_previos = models.TextField(blank=True)
+
+    # Evaluación metabólica
+    glucosa_ayuno = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    perfil_lipidico = models.TextField(blank=True)
+
+    # Plan de tratamiento
+    cirugia_bariatrica = models.BooleanField(default=False)
+    procedimiento_propuesto = models.CharField(max_length=200, blank=True)
+    especifique_procedimiento = models.CharField(max_length=500, blank=True)
+    observaciones = models.TextField(blank=True)
+    conclusiones = models.TextField(blank=True)
+
+    fecha_registro = models.DateTimeField(auto_now_add=True)
+    fecha_actualizacion = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Historia clínica'
+        verbose_name_plural = 'Historias clínicas'
+
+    def __str__(self):
+        return f'Historia clínica — {self.paciente}'
+
+
+class Consulta(models.Model):
+    paciente = models.ForeignKey(
+        Paciente, on_delete=models.CASCADE, related_name='consultas'
+    )
+    fecha = models.DateTimeField()
+    doctor = models.CharField(max_length=200, blank=True)
+    peso = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True, verbose_name='Peso (kg)')
+    notas = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Consulta'
+        verbose_name_plural = 'Consultas'
+        ordering = ['-fecha']
+
+    def __str__(self):
+        return f'Consulta {self.fecha:%d/%m/%Y} — {self.paciente}'
+
+
 class Hospitalizacion(models.Model):
     MOTIVO_CHOICES = [
         ('CIR', 'Cirugía programada'),

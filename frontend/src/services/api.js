@@ -62,6 +62,17 @@ export const hospitalizacionesApi = {
   eliminar: (id) => api.delete(`/hospitalizaciones/${id}/`),
 }
 
+export const historiaApi = {
+  obtener: (pacienteId) => api.get(`/pacientes/${pacienteId}/historia/`),
+  guardar: (pacienteId, data) => api.put(`/pacientes/${pacienteId}/historia/`, data),
+}
+
+export const consultasApi = {
+  listar: (pacienteId) => api.get('/consultas/', { params: { paciente: pacienteId } }),
+  crear: (data) => api.post('/consultas/', data),
+  eliminar: (id) => api.delete(`/consultas/${id}/`),
+}
+
 export const recetasApi = {
   listar: (pacienteId) => api.get('/recetas/', { params: { paciente: pacienteId } }),
   crear: (data) => api.post('/recetas/', data),

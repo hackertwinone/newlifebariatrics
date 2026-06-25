@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom'
 import { pacientesApi, recetasApi } from '../services/api'
 import TablaSegurosMedicos from '../components/TablaSegurosMedicos'
 import TablaHospitalizaciones from '../components/TablaHospitalizaciones'
+import TabHistoriaClinica from '../components/TabHistoriaClinica'
 import './DetallePaciente.css'
 
 export default function DetallePaciente() {
@@ -81,6 +82,7 @@ export default function DetallePaciente() {
       <div className="tabs-barra">
         {[
           ['info', 'Información personal'],
+          ['historia', 'Historia Clínica'],
           ['seguro', 'Seguro médico'],
           ['hospitalizacion', 'Hospitalizaciones'],
           ['receta', 'Recetas'],
@@ -127,6 +129,10 @@ export default function DetallePaciente() {
             <Campo label="Notas adicionales" valor={paciente.notas} span={2} />
           </InfoSection>
         </div>
+      )}
+
+      {tabActiva === 'historia' && (
+        <TabHistoriaClinica pacienteId={id} />
       )}
 
       {tabActiva === 'seguro' && (

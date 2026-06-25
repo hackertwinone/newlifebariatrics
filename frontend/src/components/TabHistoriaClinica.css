@@ -1,0 +1,53 @@
+.historia-clinica { display: flex; flex-direction: column; gap: 16px; }
+
+/* Sub-tabs */
+.historia-subtabs {
+  display: flex;
+  border-bottom: 1px solid var(--dorado-borde);
+  gap: 0;
+}
+.historia-subtab-btn {
+  background: none; border: none;
+  padding: 10px 22px;
+  font-size: 0.82rem; font-weight: 500; letter-spacing: 0.05em;
+  color: var(--gris-400); cursor: pointer; white-space: nowrap;
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+  transition: color .18s, border-color .18s;
+  min-height: 44px;
+}
+.historia-subtab-btn:hover { color: var(--dorado); }
+.historia-subtab-btn.activa { color: var(--dorado-oscuro); border-bottom-color: var(--dorado); }
+
+/* Form layout */
+.historia-form { display: flex; flex-direction: column; gap: 16px; }
+.historia-seccion { display: flex; flex-direction: column; gap: 12px; }
+
+/* Checkbox groups */
+.check-group { display: flex; flex-wrap: wrap; gap: 10px 24px; padding: 6px 0; }
+.bool-group  { display: flex; flex-wrap: wrap; gap: 10px 24px; padding: 6px 0; }
+.check-item  {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 0.88rem; font-weight: 300; cursor: pointer;
+  min-height: 36px;
+}
+.check-item input[type="checkbox"] { width: auto; min-height: unset; accent-color: var(--dorado); }
+
+/* Save confirmation */
+.guardado-ok {
+  font-size: 0.85rem; font-weight: 500; color: var(--verde);
+  letter-spacing: 0.04em; align-self: center;
+}
+
+/* Consultas */
+.consultas-tab { display: flex; flex-direction: column; gap: 16px; }
+.consulta-form { max-width: 720px; }
+.consulta-doctor { font-size: 0.88rem; color: var(--gris-400); font-weight: 300; }
+.consulta-notas {
+  font-size: 0.88rem; color: var(--carbon); font-weight: 300;
+  white-space: pre-wrap; margin-top: 10px; line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .historia-subtab-btn { padding: 10px 14px; font-size: 0.78rem; }
+  .check-group, .bool-group { gap: 8px 16px; }
+}
