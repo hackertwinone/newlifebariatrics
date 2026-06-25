@@ -1,48 +1,48 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
-import api from '../services/api'
-import './Login.css'
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import api from "../services/api";
+import "./Login.css";
 
 export default function Login() {
-  const { login } = useAuth()
-  const navigate = useNavigate()
-  const [form, setForm] = useState({ username: '', password: '' })
-  const [error, setError] = useState('')
-  const [cargando, setCargando] = useState(false)
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  const [form, setForm] = useState({ username: "", password: "" });
+  const [error, setError] = useState("");
+  const [cargando, setCargando] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setError('')
-    setCargando(true)
+    e.preventDefault();
+    setError("");
+    setCargando(true);
     try {
-      const res = await api.post('/token/', form)
-      login(res.data.access, res.data.refresh)
-      navigate('/')
+      const res = await api.post("/token/", form);
+      login(res.data.access, res.data.refresh);
+      navigate("/");
     } catch {
-      setError('Usuario o contraseña incorrectos.')
+      setError("Usuario o contraseña incorrectos.");
     } finally {
-      setCargando(false)
+      setCargando(false);
     }
-  }
+  };
 
   return (
     <div className="login-fondo">
       <div className="login-tarjeta tarjeta">
         <div className="login-logo">
-          <img src="/aurum_logo.png" alt="AURUM" height="48" style={{ display: 'block' }} />
-          <div>
-            <div className="login-nombre">AURUM</div>
-          </div>
+          <img
+            src="/newlife_bariatrics_logo.png"
+            alt="New Life Bariatrics"
+            style={{ display: "block", width: "220px", height: "auto" }}
+          />
         </div>
-        <p className="login-subtitulo-marca">Centro Cardiopulmonar y de Medicina Interna</p>
         <form onSubmit={handleSubmit} className="login-form">
           <div className="campo-grupo">
             <label>Usuario</label>
             <input
               type="text"
               value={form.username}
-              onChange={e => setForm({ ...form, username: e.target.value })}
+              onChange={(e) => setForm({ ...form, username: e.target.value })}
               autoFocus
               required
             />
@@ -52,16 +52,20 @@ export default function Login() {
             <input
               type="password"
               value={form.password}
-              onChange={e => setForm({ ...form, password: e.target.value })}
+              onChange={(e) => setForm({ ...form, password: e.target.value })}
               required
             />
           </div>
           {error && <p className="error-msg">{error}</p>}
-          <button type="submit" className="btn-primario login-btn" disabled={cargando}>
-            {cargando ? 'Ingresando…' : 'Ingresar'}
+          <button
+            type="submit"
+            className="btn-primario login-btn"
+            disabled={cargando}
+          >
+            {cargando ? "Ingresando…" : "Ingresar"}
           </button>
         </form>
       </div>
     </div>
-  )
+  );
 }

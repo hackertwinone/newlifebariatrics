@@ -42,7 +42,7 @@
   background: var(--blanco);
   border-radius: var(--radio);
   border: 1px solid var(--dorado-borde);
-  box-shadow: 0 8px 40px rgba(196,152,42,0.15);
+  box-shadow: 0 8px 40px rgba(109,87,151,0.15);
   width: 100%; max-width: 560px;
   max-height: 90vh;
   overflow-y: auto;

@@ -40,7 +40,7 @@
   font-weight: 300;
 }
 .tabla-pacientes tr:last-child td { border-bottom: none; }
-.tabla-pacientes tr:hover td { background: #FDFAF4; }
+.tabla-pacientes tr:hover td { background: #FAF9FD; }
 
 .nombre-link { font-weight: 500; color: var(--carbon); }
 .nombre-link:hover { color: var(--dorado); }
@@ -58,7 +58,7 @@
   color: inherit;
   transition: background .15s;
 }
-.paciente-card:hover { background: #FDFAF4; text-decoration: none; color: inherit; }
+.paciente-card:hover { background: #FAF9FD; text-decoration: none; color: inherit; }
 
 .paciente-card-info { flex: 1; min-width: 0; }
 .paciente-card-nombre { font-weight: 500; font-size: 0.95rem; color: var(--carbon); margin-bottom: 3px; }

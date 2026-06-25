@@ -40,15 +40,11 @@ function Layout() {
       <header className="barra-nav">
         <div className="nav-marca">
           <img
-            src="/aurum_logo.png"
-            alt="AURUM"
+            src="/newlife_bariatrics_logo.png"
+            alt="NEWLIFE BARIATRICS"
             height="36"
             style={{ display: "block" }}
           />
-          <div className="nav-marca-texto">
-            <span className="nav-marca-aurum">AURUM</span>
-            <span className="nav-marca-subtitulo">Centro Cardiopulmonar</span>
-          </div>
         </div>
 
         <button

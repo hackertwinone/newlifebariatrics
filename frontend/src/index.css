@@ -1,33 +1,43 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --dorado: #C4982A;
-  --dorado-oscuro: #9A7520;
-  --dorado-bg: #FAF6ED;
-  --dorado-borde: #E8E0D0;
-  --carbon: #1A1A1A;
-  --gris-100: #F5F5F5;
-  --gris-200: #E8E0D0;
-  --gris-400: #9A9289;
-  --gris-600: #5C5650;
-  --gris-900: #1A1A1A;
-  --blanco: #FFFFFF;
-  --rojo: #8B2E2E;
-  --rojo-bg: #FAF0F0;
-  --verde: #2E6B4F;
-  --verde-bg: #EDF5F0;
-  --amarillo: #C4982A;
-  --radio: 5px;
-  --sombra: 0 1px 6px rgba(196,152,42,0.08);
-  --sombra-md: 0 4px 20px rgba(196,152,42,0.12);
+  /* ── Brand palette (purple) ───────────────────────────── */
+  --color-surface:       #FFFFFF;
+  --color-surface-alt:   #F7F5FA;
+  --color-primary:       #6D5797;
+  --color-primary-light: #9580B8;
+  --color-primary-dark:  #503D7E;
+  --color-accent:        #98AAD7;
+  --color-text:          #5A5959;
+
+  /* ── Legacy aliases (keeps all existing references working) */
+  --dorado:        #6D5797;
+  --dorado-oscuro: #503D7E;
+  --dorado-bg:     #F7F5FA;
+  --dorado-borde:  #DDD8EE;
+  --carbon:        #5A5959;
+  --gris-100:      #F7F5FA;
+  --gris-200:      #DDD8EE;
+  --gris-400:      #9A9289;
+  --gris-600:      #5C5650;
+  --gris-900:      #1A1A1A;
+  --blanco:        #FFFFFF;
+  --rojo:          #8B2E2E;
+  --rojo-bg:       #FAF0F0;
+  --verde:         #2E6B4F;
+  --verde-bg:      #EDF5F0;
+  --amarillo:      #9580B8;
+  --radio:         5px;
+  --sombra:        0 1px 6px rgba(109,87,151,0.08);
+  --sombra-md:     0 4px 20px rgba(109,87,151,0.12);
   font-family: 'Inter', system-ui, sans-serif;
   font-weight: 300;
 }
 
 body {
-  background: linear-gradient(160deg, #F8F5F0 0%, #FFFFFF 100%);
+  background: linear-gradient(160deg, #F7F5FA 0%, #FFFFFF 100%);
   background-attachment: fixed;
-  color: var(--carbon);
+  color: var(--color-text);
   min-height: 100vh;
 }
 
@@ -100,10 +110,10 @@ button:active { transform: scale(0.99); }
   padding: 3px 9px;
   border-radius: 3px;
 }
-.badge-azul { background: var(--dorado-bg); color: var(--dorado-oscuro); border: 1px solid #E8D8A0; }
+.badge-azul { background: var(--dorado-bg); color: var(--dorado-oscuro); border: 1px solid #C8C0E0; }
 .badge-verde { background: var(--verde-bg); color: var(--verde); border: 1px solid #C0DDD0; }
 .badge-rojo { background: var(--rojo-bg); color: var(--rojo); border: 1px solid #DDBFBF; }
-.badge-amarillo { background: var(--dorado-bg); color: var(--dorado-oscuro); border: 1px solid #E8D8A0; }
+.badge-amarillo { background: var(--dorado-bg); color: var(--dorado-oscuro); border: 1px solid #C8C0E0; }
 .badge-gris { background: var(--gris-100); color: var(--gris-600); border: 1px solid var(--gris-200); }
 
 .tarjeta {
