@@ -92,6 +92,14 @@ _frontend_url = os.environ.get('FRONTEND_URL', '')
 if _frontend_url:
     CORS_ALLOWED_ORIGINS.append(_frontend_url)
 
+# CSRF
+CSRF_TRUSTED_ORIGINS = [
+    'https://newlifebariatrics.vercel.app',
+]
+
+if _frontend_url:
+    CSRF_TRUSTED_ORIGINS.append(_frontend_url)
+
 # DRF
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
@@ -103,3 +111,4 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ),
 }
+
